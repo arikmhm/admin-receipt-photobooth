@@ -1,0 +1,52 @@
+/* src/index.css */
+
+/* --- INTER (UI) --- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400; /* Regular */
+  src: url('/fonts/Inter/static/Inter_18pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700; /* Bold */
+  src: url('/fonts/Inter/static/Inter_18pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900; /* Black */
+  src: url('/fonts/Inter/static/Inter_18pt-Black.ttf') format('truetype');
+}
+
+/* --- JETBRAINS MONO (DATA) --- */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400; /* Regular */
+  src: url('/fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700; /* Bold */
+  src: url('/fonts/JetBrains_Mono/static/JetBrainsMono-Bold.ttf') format('truetype');
+}
+
+/* --- TAILWIND --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-100 text-black font-sans antialiased;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(#E3E3E3 1px, transparent 0.2px);
+  background-size: 20px 20px; /* Jarak antar titik */
+}
