@@ -1,52 +1,71 @@
-/* src/index.css */
-
-/* --- INTER (UI) --- */
+/* ─── INTER (UI font) ─────────────────────────────────────────────────────── */
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 400; /* Regular */
-  src: url('/fonts/Inter/static/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  src: url("/fonts/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 700; /* Bold */
-  src: url('/fonts/Inter/static/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 500; /* Medium — headings & labels */
+  src: url("/fonts/Inter/static/Inter_18pt-Medium.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 900; /* Black */
-  src: url('/fonts/Inter/static/Inter_18pt-Black.ttf') format('truetype');
-}
-
-/* --- JETBRAINS MONO (DATA) --- */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400; /* Regular */
-  src: url('/fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf') format('truetype');
+  font-weight: 600;
+  src: url("/fonts/Inter/static/Inter_18pt-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'JetBrains Mono';
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 700; /* Bold */
-  src: url('/fonts/JetBrains_Mono/static/JetBrainsMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  src: url("/fonts/Inter/static/Inter_18pt-Bold.ttf") format("truetype");
 }
 
-/* --- TAILWIND --- */
+/* ─── JETBRAINS MONO (data / technical) ──────────────────────────────────── */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/JetBrains_Mono/static/JetBrainsMono-Bold.ttf")
+    format("truetype");
+}
+
+/* ─── TAILWIND ────────────────────────────────────────────────────────────── */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gray-100 text-black font-sans antialiased;
-}
+@layer base {
+  body {
+    @apply bg-void text-hi font-sans antialiased;
+  }
 
-.bg-dot-pattern {
-  background-image: radial-gradient(#E3E3E3 1px, transparent 0.2px);
-  background-size: 20px 20px; /* Jarak antar titik */
+  /* Thin scrollbar — matches dark surface */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dim rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dim-strong;
+  }
 }

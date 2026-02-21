@@ -8,8 +8,10 @@ export const Input: React.FC<InputProps> = ({ className, ...props }) => {
   return (
     <input
       className={cn(
-        "w-full bg-gray-50 border-2 border-black px-3 py-2 font-mono text-sm outline-none transition-all focus:bg-white focus:shadow-neo placeholder:text-gray-400",
-        className
+        "w-full bg-void text-hi font-mono text-sm px-3 py-2 rounded-md outline-none transition-colors",
+        "border border-transparent focus:border-accent",
+        "placeholder:text-lo",
+        className,
       )}
       {...props}
     />

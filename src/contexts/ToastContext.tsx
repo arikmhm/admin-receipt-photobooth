@@ -16,7 +16,9 @@ interface ToastContextType {
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
-export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const addToast = useCallback((message: string, type: ToastType = "info") => {
@@ -36,31 +38,39 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   return (
     <ToastContext.Provider value={{ addToast }}>
       {children}
-      
-      {/* TOAST CONTAINER (FIXED POSITION) */}
-      <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-3 font-mono pointer-events-none">
+
+      {/* TOAST CONTAINER */}
+      <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none">
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`
-                pointer-events-auto min-w-[300px] max-w-sm flex items-start gap-3 p-4 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
-                animate-in slide-in-from-right fade-in duration-300
-                ${toast.type === "success" ? "bg-green-300" : ""}
-                ${toast.type === "error" ? "bg-red-400 text-white" : ""}
-                ${toast.type === "info" ? "bg-white" : ""}
-            `}
+            className={[
+              "pointer-events-auto min-w-[280px] max-w-sm flex items-start gap-3 px-4 py-3 rounded-lg border font-sans text-sm",
+              "animate-in slide-in-from-right fade-in duration-200",
+              toast.type === "success" ? "bg-surface border-ok/30" : "",
+              toast.type === "error" ? "bg-surface border-err/30" : "",
+              toast.type === "info" ? "bg-surface border-dim" : "",
+            ].join(" ")}
           >
-            <div className="mt-1">
-                {toast.type === "success" && <CheckCircle className="w-5 h-5" />}
-                {toast.type === "error" && <AlertTriangle className="w-5 h-5" />}
-                {toast.type === "info" && <Info className="w-5 h-5" />}
+            <div className="mt-0.5 shrink-0">
+              {toast.type === "success" && (
+                <CheckCircle className="w-4 h-4 text-ok" strokeWidth={1.5} />
+              )}
+              {toast.type === "error" && (
+                <AlertTriangle className="w-4 h-4 text-err" strokeWidth={1.5} />
+              )}
+              {toast.type === "info" && (
+                <Info className="w-4 h-4 text-accent" strokeWidth={1.5} />
+              )}
             </div>
             <div className="flex-1">
-                <h4 className="font-bold text-sm uppercase">{toast.type}</h4>
-                <p className="text-xs leading-tight">{toast.message}</p>
+              <p className="text-xs leading-relaxed text-hi">{toast.message}</p>
             </div>
-            <button onClick={() => removeToast(toast.id)} className="hover:opacity-50">
-                <X className="w-4 h-4" />
+            <button
+              onClick={() => removeToast(toast.id)}
+              className="text-lo hover:text-hi transition-colors shrink-0 mt-0.5"
+            >
+              <X className="w-3.5 h-3.5" strokeWidth={1.5} />
             </button>
           </div>
         ))}
